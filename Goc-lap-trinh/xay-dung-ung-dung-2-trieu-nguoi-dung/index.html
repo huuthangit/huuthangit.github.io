@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+    <title>
+        
+        Xây dựng hệ thống cho ứng dụng hơn 2 triệu người dùng - Thangnh Blog! Blog chia sẻ kiến thức IT và kinh nghiệm cuộc sống
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34415662-11"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',  new Date());
+      gtag('config',  'UA-34415662-11');
+    </script>
+
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Practice doesn&#39;t make perfect, only perfect practice makes perfect </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar_pencil.jpg" />
+        </div>
+        <div class="name">
+            <i>HuuThangIT</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Tong-quan-app"><span class="toc-text">Tổng quan app:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kien-truc"><span class="toc-text">Kiến trúc:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Cac-bai-toan-da-duoc-giai-quyet"><span class="toc-text">Các bài toán đã được giải quyết:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Luong-Request-lon-tu-app-khi-nguoi-dung-di-chuyen-Map"><span class="toc-text">1. Lượng Request lớn từ app khi người dùng di chuyển Map</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Nguoi-dung-tang-len-dot-ngot-tai-nhung-gio-cu-the"><span class="toc-text">2. Người dùng tăng lên đột ngột tại những giờ cụ thể.</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-Toi-uu-hien-thi-pokemon-tren-app-Dung-cache-cache-va-cache"><span class="toc-text">3. Tối ưu hiển thị pokemon trên app: Dùng cache, cache và cache</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-Toi-uu-truy-van"><span class="toc-text">4. Tối ưu truy vấn:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-Quan-ly-bo-nho-tren-app"><span class="toc-text">5. Quản lý bộ nhớ trên app:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-Giam-tai-cho-database-Database-replica"><span class="toc-text">6. Giảm tải cho database: Database replica</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Can-cai-thien"><span class="toc-text">Cần cải thiện:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ket-luan"><span class="toc-text">Kết luận:</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> Practice doesn&#39;t make perfect, only perfect practice makes perfect </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Xây dựng hệ thống cho ứng dụng hơn 2 triệu người dùng
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post: <span>2018-04-11 00:38:21</span></span>
+        
+        </span>
+        <!-- <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span> -->
+        </span>
+    </div>
+    <div class="post-content ">
+        <h4 id="Tong-quan-app"><a href="#Tong-quan-app" class="headerlink" title="Tổng quan app:"></a>Tổng quan app:</h4><p>Từ tháng 9/2017, mình join vào team phát triển app di động cho người chơi game Pokemon, ứng dụng có tên tiếng Nhật là 1秒マップforポケモンGO. Thông qua app, người dùng có thể biết được vị trí của những Pokemon mới xuất hiện, thông tin Gym, Battle, ngoài ra còn có 1 diễn đàn mọi người có thể chat với nhau, chia sẻ thông tin. Nay đúng đợt app gỡ khỏi store vì một số lý do, mình sẽ tổng hợp những gì mình học được từ việc xây dựng và phát triển ứng dụng này. Một ứng dụng mà mình rất tâm đắc về thiết kế của nó cũng như các bài toán mà nó giải quyết. </p>
+<h4 id="Kien-truc"><a href="#Kien-truc" class="headerlink" title="Kiến trúc:"></a>Kiến trúc:</h4><h2 id=""><a href="#" class="headerlink" title=" "></a><img src="http://blog.huuthangit.com/wp-content/uploads/2018/04/スクリーンショット-2018-04-10-17.33.47-300x199.png" alt="スクリーンショット 2018-04-10 17.33.47"> </h2><p>+ Server: triển khai trên nền tảng AWS. </p>
+<ul>
+<li>Hook server: framework Loopback (nodejs) </li>
+<li>Api server: Loopback </li>
+<li>Worker server: nodejs<br>+ Database: Amazon Aurora<br>+ App: iOS, android </li>
+</ul>
+<h4 id="Cac-bai-toan-da-duoc-giai-quyet"><a href="#Cac-bai-toan-da-duoc-giai-quyet" class="headerlink" title="Các bài toán đã được giải quyết:"></a>Các bài toán đã được giải quyết:</h4><h5 id="1-Luong-Request-lon-tu-app-khi-nguoi-dung-di-chuyen-Map"><a href="#1-Luong-Request-lon-tu-app-khi-nguoi-dung-di-chuyen-Map" class="headerlink" title="1. Lượng Request lớn từ app khi người dùng di chuyển Map"></a>1. Lượng Request lớn từ app khi người dùng di chuyển Map</h5><p>Giải pháp: Truy vấn dữ liệu theo geohash kết hợp với sử dụng CDN. Bạn nào đã từng làm ứng dụng bản đồ (map) thì chắc đã gặp phải bài toán khi người dùng truy vấn liên tục lên server khi di chuyển map. Nếu người dùng lên đến hàng triệu thì server bạn sẽ ko thể chịu tải nổi dù có scale nhiều đến thế nào. Giải pháp cho vấn đề này là dùng geohash, nếu ai chưa biết geohash là gì thì tìm hiểu thêm ở đây nhé: <a href="https://en.wikipedia.org/wiki/Geohash" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Geohash</a>.<br>Geohash là một chuỗi string biểu diễn vị trí địa lý. Bề mặt trái đất được chia ra thành các block nằm sát nhau, mỗi block này tương ứng với 1 geohash. Khi người dùng trong block đó cần truy vấn thông tin (pokemon), thì các pokemon trong block đó sẽ được lấy ra để trả về cho người dùng, đầu vào input lúc truy vấn dữ liệu là geohash chứ ko còn là 1 vị trí cụ thể. Ngoài ra kết hợp với việc sử dụng CDN, dữ liệu về pokemon trong geohash sẽ được cached lại, dù người dùng có di chuyển bao nhiêu lần trên map thì chi phí truy vấn đã được tối ưu, server sẽ ko còn phải xử lý nhiều nữa. </p>
+<h5 id="2-Nguoi-dung-tang-len-dot-ngot-tai-nhung-gio-cu-the"><a href="#2-Nguoi-dung-tang-len-dot-ngot-tai-nhung-gio-cu-the" class="headerlink" title="2. Người dùng tăng lên đột ngột tại những giờ cụ thể."></a>2. Người dùng tăng lên đột ngột tại những giờ cụ thể.</h5><p>Giải pháp hệ thống mình sử dụng là dùng chức năng auto scaling trong aws. Khi người dùng tăng lên, tài nguyên CPU cần thiết để xử lý cũng tăng lên, khi đó mình cài đặt khi CPU lên ngưỡng &gt;60% thì gọi auto scaling và 1 instance EC2 mới được tạo ra. Đối với một số người đã từng triển khai các dịch vụ dùng AWS thì đây là việc đơn giản không có gì mới mẻ, nhưng đối với mình đây là lần đầu tiên mình tiếp xúc với AWS nên mình thấy các các dịch vụ của AWS thực sự rất tuyệt vời để giải quyết các bài toán nhiều người dùng. </p>
+<h5 id="3-Toi-uu-hien-thi-pokemon-tren-app-Dung-cache-cache-va-cache"><a href="#3-Toi-uu-hien-thi-pokemon-tren-app-Dung-cache-cache-va-cache" class="headerlink" title="3. Tối ưu hiển thị pokemon trên app: Dùng cache, cache và cache"></a>3. Tối ưu hiển thị pokemon trên app: Dùng cache, cache và cache</h5><p>Với data trong 1 geohash, mỗi lần trước khi hiển thị lên map, chúng đều được kiểm tra xem đã tồn tại image tương ứng trong cache chưa. Điều này sẽ giảm bớt việc sử dụng bộ nhớ của app đồng thời tăng tốc độ hiển thị. </p>
+<h5 id="4-Toi-uu-truy-van"><a href="#4-Toi-uu-truy-van" class="headerlink" title="4. Tối ưu truy vấn:"></a>4. Tối ưu truy vấn:</h5><p>Mặc dù đã dùng geohash kết hợp với cdn để giảm tải cho server, app vẫn có nhiều chức năng khác cần cập nhật csdl thường xuyên như update vị trí user, update thông tin user…Với hơn 2 triệu người dùng mà ko tối ưu truy vấn này thì hệ thống phải mở rộng ra rất nhiều cũng như tốn nhiều chi phí. Giải pháp mình dùng ở đây là dung redis để cache truy vấn, với những người dùng mà ko có sự thay đổi thông tin khi gửi request, hoặc bán kính di chuyển nhỏ không đáng kể, mình sử dụng cache đã được lưu trong redis để trả về cho họ. Còn trong trường hợp thông tin đã được thay đổi, 1 query sẽ thực hiện thay đổi ấy và dữ liệu trong redis sẽ được cập nhật theo. </p>
+<h5 id="5-Quan-ly-bo-nho-tren-app"><a href="#5-Quan-ly-bo-nho-tren-app" class="headerlink" title="5. Quản lý bộ nhớ trên app:"></a>5. Quản lý bộ nhớ trên app:</h5><p>Memory leak là vấn đề rất hay gặp đối với lập trình viên non kinh nghiệm. Trong việc phát triển app này, mình luôn chú ý việc quản lý bộ nhớ để sao cho không có xảy ra memory leak ở bất kỳ controller nào. Lúc lập trình mình luôn tuân theo quy tắc sau đây: </p>
+<ul>
+<li>delegate phải là biến weak </li>
+<li>Dùng closure thì phải thêm [weak self] khi cần gọi biến trong vc. </li>
+<li>Luôn kiểm tra hàm deinit() có được gọi không khi close viewController … </li>
+</ul>
+<h5 id="6-Giam-tai-cho-database-Database-replica"><a href="#6-Giam-tai-cho-database-Database-replica" class="headerlink" title="6. Giảm tải cho database: Database replica"></a>6. Giảm tải cho database: Database replica</h5><p>Lý do hệ thống dùng amazon aurora database bởi vì nó hỗ trợ replication database, giúp phân chia ra thành master database cho chức năng write và slave database cho chức năng read, với độ trễ tính bằng milisecond. </p>
+<h4 id="Can-cai-thien"><a href="#Can-cai-thien" class="headerlink" title="Cần cải thiện:"></a>Cần cải thiện:</h4><p>- Hiện tại hệ thống vẫn còn dùng khá nhiều tài nguyên do hạn chế xử lý của nodejs. Mình đã nghiên cứu chuyển sang dùng Golang để tận dùng sức mạnh xử lý concurrency dùng goroutines nhưng vì service phải dừng vì một số lý do nên mình chưa thể triển khai được. </p>
+<h4 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận:"></a>Kết luận:</h4><p>Trong thực tế khi triển khai còn nhiều thách thức khác cần phải giải quyết. Với người dùng ngày càng tăng thì đây chỉ là bước thiết kế cơ bản, sau này muốn mở rộng hơn nữa ta phải tính đến việc thiết kế lại cơ sở dữ liệu, thiết kế độc lập các chức năng để dễ dàng scale, và phân ra nhiều zone khác nhau. Chi tiết về thiết kế hệ thống lớn bạn có thể tham khảo bài viết rất hay trên amazon: <a href="https://aws.amazon.com/blogs/startups/scaling-on-aws-part-4-one-million-users/" target="_blank" rel="noopener">https://aws.amazon.com/blogs/startups/scaling-on-aws-part-4-one-million-users/</a> Trong bất cứ hệ thống nào mình khuyên các bạn nên tận dụng tối đa chức năng cache bất cứ khi nào có thể, một cài đặt rất đơn giản nhưng sẽ tiết kiệm cho bạn được rất nhiều chi phí.</p>
+
+        
+        <div id="comment-container">
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'https://blog.huuthangit.com/Goc-Lap-Trinh/xay-dung-ung-dung-2-trieu-nguoi-dung/';
+              this.page.identifier = 'https://blog.huuthangit.com/Goc-Lap-Trinh/xay-dung-ung-dung-2-trieu-nguoi-dung/';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+              s.src = 'https://huuthangit.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+
+        
+        <li>
+            <a target="_blank" href="https://www.facebook.com/huuthangbk">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-facebook"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/thangnh0409">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/thangnh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://nguyenuyen.com">nguyenuyen</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Copyright © 2015-2020 huuthangit</p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<!-- <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+
+
+<script>
+    //var gitment = new Gitment({
+    //    id: 'Xây dựng hệ thống cho ứng dụng hơn 2 triệu người dùng',
+    //    owner: '',
+    //    repo: '',
+    //    oauth: {
+    //        client_id: '',
+    //        client_secret: '',
+    //    },
+    //})
+    //gitment.render('comment-container')
+</script>
+
+</html>
