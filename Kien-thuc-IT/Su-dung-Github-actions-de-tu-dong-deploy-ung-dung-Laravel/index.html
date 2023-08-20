@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+    <title>
+        
+        Sử dụng Github actions để tự động deploy ứng dụng Laravel - Thangnh Blog! Blog chia sẻ kiến thức IT và kinh nghiệm cuộc sống
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34415662-11"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',  new Date());
+      gtag('config',  'UA-34415662-11');
+    </script>
+
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Practice doesn&#39;t make perfect, only perfect practice makes perfect </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar_pencil.jpg" />
+        </div>
+        <div class="name">
+            <i>HuuThangIT</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cach-thuc-hoat-dong"><span class="toc-text">Cách thức hoạt động</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tao-script-de-thuc-hien-deploy"><span class="toc-text">Tạo script để thực hiện deploy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tao-workflow"><span class="toc-text">Tạo workflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cai-dat-SSH-key"><span class="toc-text">Cài đặt SSH key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Copy-ssh-key-len-tai-khoan-github"><span class="toc-text">Copy ssh-key lên tài khoản github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Them-permission-cho-deploy-sh"><span class="toc-text">Thêm permission cho deploy.sh</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> Practice doesn&#39;t make perfect, only perfect practice makes perfect </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Sử dụng Github actions để tự động deploy ứng dụng Laravel
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post: <span>2023-08-19 03:57:36</span></span>
+        
+          <span class="attr">Tags: /
+            
+            <a class="tag" href="/tags/#Github Actions" title="Github Actions">Github Actions</a>
+            <span>/</span>
+          
+        
+        </span>
+        <!-- <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span> -->
+        </span>
+    </div>
+    <div class="post-content ">
+        <p>Github Actions là một công cụ giúp tự động hóa các công việc trong quá trình phát triển phần mềm. Trong bài viết này, chúng ta sẽ tìm hiểu cách sử dụng Github Actions để tự động deploy ứng dụng Laravel.</p>
+<h2 id="Cach-thuc-hoat-dong"><a href="#Cach-thuc-hoat-dong" class="headerlink" title="Cách thức hoạt động"></a>Cách thức hoạt động</h2><p>Khi 1 event xảy ra ở repository như là tạo 1 pull request hoặc push code lên 1 branch nào đó, sẽ kích hoạt workflow đã được tạo sẵn. Mỗi workflow sẽ chứa 1 hoặc nhiều job, các job có thể được chạy tuần tự hoặc song song với nhau. Mỗi job sẽ chạy bên trong máy ảo <em>runner</em> hoặc bên trong 1 container, và có 1 hoặc nhiều step trong mỗi job để run script hoặc action.<br><img src="/uploads/2023/github_action_wf.webp" alt=""></p>
+<h2 id="Tao-script-de-thuc-hien-deploy"><a href="#Tao-script-de-thuc-hien-deploy" class="headerlink" title="Tạo script để thực hiện deploy"></a>Tạo script để thực hiện deploy</h2><p>Bước đầu tiên chúng ta sẽ phải làm là tạo script chứa các command cần thiết để thực hiện deploy và chạy ứng dụng.</p>
+<p>Ở thư mục root của ứng dụng, chúng ta sẽ thêm thư mục .scripts</p>
+<p>Bên trong thư mục .scripts, thêm file <code>deploy.sh</code> với nội dung bên dưới:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Deployment started ..."</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Chuyển về chế độ maintenance</span></span><br><span class="line">(php artisan down) || <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Pull code mới nhất về từ branch master</span></span><br><span class="line">git pull origin master</span><br><span class="line"></span><br><span class="line"><span class="comment"># Cài đặt thư viện</span></span><br><span class="line">composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader</span><br><span class="line"></span><br><span class="line"><span class="comment"># Xoá cache</span></span><br><span class="line">php artisan clear-compiled</span><br><span class="line"></span><br><span class="line"><span class="comment"># Tạo lại cache</span></span><br><span class="line">php artisan optimize</span><br><span class="line"></span><br><span class="line"><span class="comment"># Biên dịch npm assets</span></span><br><span class="line">npm run prod</span><br><span class="line"></span><br><span class="line"><span class="comment"># Thực hiện migrate Database</span></span><br><span class="line">php artisan migrate --force</span><br><span class="line"></span><br><span class="line"><span class="comment"># Thoát chế độ maintenance</span></span><br><span class="line">php artisan up</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Deployment finished!"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Tao-workflow"><a href="#Tao-workflow" class="headerlink" title="Tạo workflow"></a>Tạo workflow</h2><p>Github action workflow là nơi chứa các hướng dẫn cũng như các bước cụ thể để chạy các jobs.</p>
+<p>Bạn cần tạo một file <code>deploy.yml</code> trong thư mục <code>.github/workflows</code> trong repository của bạn. Trong file này, bạn cần định nghĩa các công việc cần thực hiện để deploy ứng dụng Laravel.</p>
+<p>Ví dụ, đoạn code sau đây sẽ định nghĩa một công việc để deploy ứng dụng Laravel khi có sự thay đổi code ở nhánh master</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">name</span>: Deploy</span><br><span class="line"></span><br><span class="line"># Trigger workflow khi có sự kiện push hoặc tạo pull request trên branch master</span><br><span class="line"><span class="attribute">on:</span></span><br><span class="line">  push:</span><br><span class="line">    <span class="attribute">branches:</span></span><br><span class="line">      - master</span><br><span class="line">  <span class="attribute">pull_request:</span></span><br><span class="line">    branches:</span><br><span class="line">      - master</span><br><span class="line">      </span><br><span class="line"># Xác thực với server thông qua ssh</span><br><span class="line"># và run script để thực hiện deploy</span><br><span class="line"><span class="attribute">jobs:</span></span><br><span class="line">  deploy:</span><br><span class="line">    <span class="attribute">runs-on</span>: ubuntu-latest</span><br><span class="line">    <span class="attribute">steps:</span></span><br><span class="line">      - uses: actions/checkout@v2</span><br><span class="line">      - name: Deploy to server</span><br><span class="line">        <span class="attribute">uses</span>: appleboy/ssh-action@master</span><br><span class="line">        <span class="attribute">with:</span></span><br><span class="line">          host: $&#123;&#123; secrets.HOST &#125;&#125;</span><br><span class="line">          <span class="attribute">username</span>: $&#123;&#123; secrets.USERNAME &#125;&#125;</span><br><span class="line">          <span class="attribute">port</span>: $&#123;&#123; secrets.PORT &#125;&#125;</span><br><span class="line">          <span class="attribute">key</span>: $&#123;&#123; secrets.SSHKEY &#125;&#125;</span><br><span class="line">          <span class="attribute">script</span>: "cd /var/www/html &amp;&amp; ./.scripts/deploy.sh"</span><br></pre></td></tr></table></figure>
+<p>Cụ thể, khi code ở branch master có sự thay đổi sẽ trigger workflow hoạt động, login vào server bằng SSH, thực hiện các lệnh được mô tả trong <code>deploy.sh</code> mà chúng ta đã tạo ở bước trước.</p>
+<h2 id="Cai-dat-SSH-key"><a href="#Cai-dat-SSH-key" class="headerlink" title="Cài đặt SSH key"></a>Cài đặt SSH key</h2><p>Giờ là lúc chúng ta tạo kết nối giữa server của bạn và Github.</p>
+<p>Đầu tiên chúng ta cần tạo ssh key pair trên server bằng câu lệnh sau:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh-keygen -t rsa -b 4096 -C <span class="string">"youremail@example.com"</span></span></span><br></pre></td></tr></table></figure></p>
+<p>Câu lệnh trên sẽ tạo ra 2 keys, 1 public key và 1 private key, chúng được lưu ở thư mục <code>.ssh</code>.</p>
+<p>Tiếp đến bạn cần thêm private key trên vào ssh-agent:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">eval</span> <span class="string">"<span class="variable">$(ssh-agent -s)</span>"</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh-add ~/.ssh/id_rsa</span></span><br></pre></td></tr></table></figure></p>
+<p>Cuối cùng, thêm public key vào file <code>authorized_keys</code> ở trên server.<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cuối <span class="keyword">c</span>ùng, <span class="keyword">th</span>ê<span class="keyword">m</span> public key và<span class="keyword">o</span> <span class="keyword">file</span> authorized_keys ở <span class="keyword">tr</span>ên server.</span><br></pre></td></tr></table></figure></p>
+<h2 id="Copy-ssh-key-len-tai-khoan-github"><a href="#Copy-ssh-key-len-tai-khoan-github" class="headerlink" title="Copy ssh-key lên tài khoản github"></a>Copy ssh-key lên tài khoản github</h2><p>Ở trong file <code>deploy.yml</code> chúng ta có sử dụng các key: HOST, PORT, KEY, USERNAME.</p>
+<p>Giờ là lúc chúng ta định nghĩa các key này trên github để có thể kết nối được đến server.</p>
+<p>1)  Login vào tài khoản Github và mở mục <strong>Settings</strong> của repository<br><img src="/uploads/2023/github_action_1.png" alt=""></p>
+<p>2) Click vào mục Secrets and variables từ sidebar menu<br><img src="/uploads/2023/github_action_2.png" alt=""></p>
+<p>3) Click button New repository secret<br><img src="/uploads/2023/github_action_3.png" alt=""></p>
+<p>Chúng ta thêm các key dưới đây:</p>
+<p><strong>HOST</strong>: địa chỉ IP của server</p>
+<p><strong>PORT</strong>: ssh port, mặc định là 22</p>
+<p><strong>SSHKEY</strong>: là private key chúng ta đã tạo ở bước trên</p>
+<p><strong>USERNAME</strong>: tên user dùng để login vào server</p>
+<p>4) Bước cuối cùng để server có thể fetch code từ github về, chúng ta cần thêm public key đã tạo vào tài khoản github.</p>
+<p>a. Nếu bạn có nhiều repositories thì bạn có thể thêm public key ở account level: Settings → SSH and GPG keys</p>
+<p>b. Còn nếu bạn muốn chỉ định để truy cập repository nhất định thì bạn có thể thêm public key ở mục <code>Deploy keys</code> trong Settings<br><img src="/uploads/2023/github_action_4.png" alt=""></p>
+<h2 id="Them-permission-cho-deploy-sh"><a href="#Them-permission-cho-deploy-sh" class="headerlink" title="Thêm permission cho deploy.sh"></a>Thêm permission cho deploy.sh</h2><p>Chúng ta cần cấp quyền excecution như dưới:<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x .<span class="regexp">/REPOSITORY/</span>.scripts<span class="regexp">/deploy.sh</span></span><br></pre></td></tr></table></figure></p>
+<p>Các bước chuẩn bị đã xong, chúng ta hãy thử commit và push code vào branch master sẽ thấy điều thần kỳ xảy ra. Chúng ta cũng có thể thêm các workflow khác cho việc testing, tạo môi trường staging…</p>
+<p>Tham khảo:<br>1) <a href="https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions" target="_blank" rel="noopener">https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions</a><br>2) <a href="https://dev.to/kenean50/automate-your-laravel-app-deployment-with-github-actions-2g7j" target="_blank" rel="noopener">https://dev.to/kenean50/automate-your-laravel-app-deployment-with-github-actions-2g7j</a> </p>
+
+        
+        <div id="comment-container">
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'https://blog.huuthangit.com/Kien-thuc-IT/Su-dung-Github-actions-de-tu-dong-deploy-ung-dung-Laravel/';
+              this.page.identifier = 'https://blog.huuthangit.com/Kien-thuc-IT/Su-dung-Github-actions-de-tu-dong-deploy-ung-dung-Laravel/';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+              s.src = 'https://huuthangit.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+
+        
+        <li>
+            <a target="_blank" href="https://www.facebook.com/huuthangbk">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-facebook"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/thangnh0409">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/thangnh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://nguyenuyen.com">nguyenuyen</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Copyright © 2015-2020 huuthangit</p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<!-- <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+
+
+<script>
+    //var gitment = new Gitment({
+    //    id: 'Sử dụng Github actions để tự động deploy ứng dụng Laravel',
+    //    owner: '',
+    //    repo: '',
+    //    oauth: {
+    //        client_id: '',
+    //        client_secret: '',
+    //    },
+    //})
+    //gitment.render('comment-container')
+</script>
+
+</html>

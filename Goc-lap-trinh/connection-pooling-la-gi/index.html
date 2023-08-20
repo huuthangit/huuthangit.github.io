@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+    <title>
+        
+        Connection Pooling là gì? - Thangnh Blog! Blog chia sẻ kiến thức IT và kinh nghiệm cuộc sống
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34415662-11"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',  new Date());
+      gtag('config',  'UA-34415662-11');
+    </script>
+
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Practice doesn&#39;t make perfect, only perfect practice makes perfect </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar_pencil.jpg" />
+        </div>
+        <div class="name">
+            <i>HuuThangIT</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> Practice doesn&#39;t make perfect, only perfect practice makes perfect </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Connection Pooling là gì?
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post: <span>2018-03-15 19:08:42</span></span>
+        
+        </span>
+        <!-- <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span> -->
+        </span>
+    </div>
+    <div class="post-content ">
+        <p>Khi làm việc với cơ sở dữ liệu cho những hệ thống tương đối lớn thì vấn đề rất quan trọng đó là đảm bảo yêu cầu hiệu năng cao. Một trong những vấn đề cần thiết nhất đó là phải xử lý để tối ưu số kết nối tới cơ sở dữ liệu. Đối với lập trình viên mới vào nghề, bình thường với mỗi client request  sẽ mở 1 kết nối tới database server và rồi lại đóng lại. Việc tạo và hủy các kết nối tới DB sẽ ảnh hưởng rất nhiều tới hiệu năng của ứng dụng bởi chúng cần thực hiện tiến trình quản lý tài nguyên cơ sở dữ liệu. Điển hình là database server sẽ mất từ 1 đến 3s để thiết lập kết nối tới DB (trong bao gồm giao tiếp với server, chứng thực, và còn cả tá tác vụ khác). Và việc này cần thực hiện cho mỗi yêu kết nối tới server, nó sẽ không thể đáp ứng cho ứng dụng hiệu năng cao được. Vậy giải pháp được đưa ra bởi các nhà cung cấp đó là phải quản lý và chia sẻ số kết nối – <em>đó chính là kỹ thuật connection pooling</em>. </p>
+<p><strong>Vậy Connection pool là gì?</strong><br>Connection pooling (tạm dịch là vùng kết nối) : là kỹ thuật cho phép tạo và duy trì 1 tập các kết nối dùng chung nhằm tăng hiệu suất cho các ứng dụng web bằng cách sử dụng lại các kết nối khi có yêu cầu thay vì việc tạo kết nối mới. </p>
+<p><strong>Connection pooling làm việc như thế nào?</strong><br>CPM (Connection pool Manager) là trình quản lý vùng kết nối sẽ duy trì và vận hành 1 tập các kết nối cơ sở dữ liệu. Mỗi khi có yêu cầu kết nối tới cơ sở dữ liệu, CPM sẽ kiểm tra xem có kết nối nào đang rỗi, nó sẽ lấy kết nối đó ra thực hiện yêu cầu. Nếu tất cả các kết nối trong CPM đều bận và pool chưa đầy (chưa đạt tới max số kết nối quy định trước) thì 1 kết nối mới sẽ được tạo ra và được CPM đưa vào Pool . Khi Pool đầy thì các kết nối tiếp theo sẽ bị đưa vào hàng đợi, chờ đến khi nào có 1 kết nối trong Pool bị timeout hoặc chuyển sang trạng thái sẵn sàng.</p>
+
+        
+        <div id="comment-container">
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'https://blog.huuthangit.com/Goc-Lap-Trinh/connection-pooling-la-gi/';
+              this.page.identifier = 'https://blog.huuthangit.com/Goc-Lap-Trinh/connection-pooling-la-gi/';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+              s.src = 'https://huuthangit.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+
+        
+        <li>
+            <a target="_blank" href="https://www.facebook.com/huuthangbk">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-facebook"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/thangnh0409">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/thangnh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://nguyenuyen.com">nguyenuyen</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Copyright © 2015-2020 huuthangit</p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<!-- <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+
+
+<script>
+    //var gitment = new Gitment({
+    //    id: 'Connection Pooling là gì?',
+    //    owner: '',
+    //    repo: '',
+    //    oauth: {
+    //        client_id: '',
+    //        client_secret: '',
+    //    },
+    //})
+    //gitment.render('comment-container')
+</script>
+
+</html>

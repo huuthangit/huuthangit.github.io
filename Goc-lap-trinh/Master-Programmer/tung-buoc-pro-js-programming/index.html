@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+    <title>
+        
+        Từng bước Pro JS Programming - Thangnh Blog! Blog chia sẻ kiến thức IT và kinh nghiệm cuộc sống
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34415662-11"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',  new Date());
+      gtag('config',  'UA-34415662-11');
+    </script>
+
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Practice doesn&#39;t make perfect, only perfect practice makes perfect </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar_pencil.jpg" />
+        </div>
+        <div class="name">
+            <i>HuuThangIT</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> Practice doesn&#39;t make perfect, only perfect practice makes perfect </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Từng bước Pro JS Programming
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post: <span>2017-05-11 02:38:03</span></span>
+        
+          <span class="attr">Tags: /
+            
+            <a class="tag" href="/tags/#master js" title="master js">master js</a>
+            <span>/</span>
+          
+            <a class="tag" href="/tags/#refactoring code" title="refactoring code">refactoring code</a>
+            <span>/</span>
+          
+        
+        </span>
+        <!-- <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span> -->
+        </span>
+    </div>
+    <div class="post-content ">
+        <p>Với một newbie mới bước vào lập trình web, để hiển thị và xử lý sự kiên click lên 1 banner, họ thường viết code trong js file như sau:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// document ready</span></span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    $(<span class="string">'.banner'</span>).show();</span><br><span class="line">    $(<span class="string">'.banner'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// event handle</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Giả sử rằng các yêu cầu liên quan đến banner này càng nhiều như hiển thị với hiệu ứng slide, không hiển thị với thiết bị không phải là iOS device, hoặc là hiển thị hiệu ứng này với các banner khác…Khi đó phần code trên dần dần bị nhiều lên và code trở nên khó bảo trì. Hơn nữa ta cũng không thể kế thừa được code này để áp dụng chức năng tương tự cho các banner khác. Chính vì vậy việc viết code js thông minh, có thể kế thừa, dễ bảo trì luôn là một ưu tiên đối với lập trình viên web. Giờ chúng ta sẽ viết lại đoạn code trên ở 1 level cao hơn nhé.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> $, window </span>) </span>&#123;</span><br><span class="line">	<span class="built_in">window</span>.banner = &#123;</span><br><span class="line">		init: <span class="function"><span class="keyword">function</span>(<span class="params"> options </span>) </span>&#123;</span><br><span class="line">			<span class="comment">// Tham số mặc định khi khởi tạo 1 banner object mới</span></span><br><span class="line">			<span class="keyword">var</span> defaults = &#123;</span><br><span class="line">				<span class="string">'bannerClass'</span>: <span class="string">'top-banner'</span>,</span><br><span class="line">				<span class="string">'iDeviceCheck'</span>: <span class="literal">true</span>, <span class="comment">// Chỉ hiển thị trên iOS devices</span></span><br><span class="line">				<span class="string">'animationSpeed'</span>: <span class="string">'fast'</span>,</span><br><span class="line">				<span class="string">'animationEasing'</span>: <span class="string">'swing'</span>,</span><br><span class="line">				<span class="string">'animationOnComplete'</span>: $.noop</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			options = $.extend( defaults, options );</span><br><span class="line"></span><br><span class="line">			<span class="comment">// isIDevice(): Kiểm tra xem có phải iOS device hay không, hàm này các bạn tự viết nhé</span></span><br><span class="line">			<span class="keyword">var</span> iDevice = isIDevice();</span><br><span class="line"></span><br><span class="line">			<span class="comment">// Không làm gì nếu không phải i0S device và tuỳ chọn iDeviceCheck là true</span></span><br><span class="line">			<span class="keyword">if</span> ( options.iDeviceCheck &amp;&amp; !iDevice ) &#123;</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="comment">// Gọi hiển thị banner</span></span><br><span class="line">			banner.show.call( <span class="keyword">this</span>, options );</span><br><span class="line"></span><br><span class="line">			<span class="comment">// Xử lý sự kiện</span></span><br><span class="line">			$(<span class="string">'.'</span> \+ options.bannerClass).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">				<span class="comment">// event handle</span></span><br><span class="line">			&#125;)</span><br><span class="line">		&#125;,</span><br><span class="line"></span><br><span class="line">		show: <span class="function"><span class="keyword">function</span>(<span class="params"> options </span>) </span>&#123;</span><br><span class="line">			$(<span class="string">'.'</span> \+ options.bannerClass)</span><br><span class="line">				.fadeIn( options.animationSpeed, options.animationEasing, options.animationOnComplete);</span><br><span class="line">		&#125;,</span><br><span class="line"></span><br><span class="line">		hide: <span class="function"><span class="keyword">function</span>(<span class="params"> options </span>)</span>&#123;&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)( jQuery, <span class="built_in">window</span>)</span><br></pre></td></tr></table></figure>
+<p>  Việc đóng gói như 1 class trong lập trình OOP, ta có thể mở rộng, kế thừa và bảo trì code một cách dễ dàng. Khi sử dụng ta có thể thay đổi các tham số mặc định phù hợp với các yêu cầu đặt ra. Ví dụ:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	banner.init(&#123;</span><br><span class="line">		<span class="string">'bannerClass'</span>: <span class="string">'bottom-banner'</span>,</span><br><span class="line">		<span class="string">'animationSpeed'</span>: <span class="string">'slow'</span></span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  Chỉ một chút thay đổi nhỏ là code js của bạn đã ở 1 level hoàn toàn khác, đây cũng là các bước cơ bản để viết nên 1 jQuery plugin, ai có cách xử lý code ở level cao hơn nữa thì comment dưới để mọi người cùng học tập nhé.</p>
+
+        
+        <div id="comment-container">
+          <div id="disqus_thread"></div>
+          <script>
+            var disqus_config = function () {
+              this.page.url = 'https://blog.huuthangit.com/Goc-Lap-Trinh/Master-Programmer/tung-buoc-pro-js-programming/';
+              this.page.identifier = 'https://blog.huuthangit.com/Goc-Lap-Trinh/Master-Programmer/tung-buoc-pro-js-programming/';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+              s.src = 'https://huuthangit.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+
+        
+        <li>
+            <a target="_blank" href="https://www.facebook.com/huuthangbk">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-facebook"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/thangnh0409">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/thangnh">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://nguyenuyen.com">nguyenuyen</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Copyright © 2015-2020 huuthangit</p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<!-- <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+
+
+<script>
+    //var gitment = new Gitment({
+    //    id: 'Từng bước Pro JS Programming',
+    //    owner: '',
+    //    repo: '',
+    //    oauth: {
+    //        client_id: '',
+    //        client_secret: '',
+    //    },
+    //})
+    //gitment.render('comment-container')
+</script>
+
+</html>
